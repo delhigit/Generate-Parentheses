@@ -1,0 +1,22 @@
+void getResult(int max, vector<string> &result, string str, int startBracket, int endBracket)
+    {
+        if((startBracket + endBracket) == max*2)
+        {
+            result.push_back(str);
+            return;
+        }
+        
+        if(startBracket < max)
+            getResult(max, result, str + "(", startBracket + 1, endBracket);
+        
+        if(endBracket < startBracket)
+            getResult(max, result, str + ")", startBracket, endBracket + 1);
+    }
+    
+    vector<string> generateParenthesis(int n)
+    {
+        vector<string> result;
+        
+        getResult(n, result, "", 0, 0);
+        return result;
+    }
